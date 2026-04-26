@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation Studio – Systémy pro malé firmy</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --white: #F5F4F0;
+    --red: #E8192C;
+    --red-dark: #C01020;
+    --gray: #888580;
+    --light: #EEECEA;
+    --border: rgba(10,10,10,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,244,240,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--red); }
+
+  nav ul {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  nav a {
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black) !important;
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--red) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,25,44,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--red);
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800; font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: normal; color: var(--red);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem; line-height: 1.7;
+    color: var(--gray); max-width: 460px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--black); color: var(--white);
+    padding: 0.875rem 2rem; border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--red); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent; color: var(--black);
+    padding: 0.875rem 2rem; border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; border: 1.5px solid var(--black);
+    cursor: pointer; transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { background: var(--black); color: var(--white); }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative;
+  }
+
+  .dashboard-mock {
+    background: var(--black);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+    transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
+  }
+
+  .mock-header {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mock-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  .mock-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin-left: 0.5rem; letter-spacing: 0.05em;
+  }
+
+  .mock-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem; margin-bottom: 1.25rem;
+  }
+
+  .mock-stat {
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 0.75rem;
+  }
+
+  .mock-stat-label {
+    font-size: 0.65rem; color: rgba(255,255,255,0.4);
+    margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  .mock-stat-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem; font-weight: 700; color: #fff;
+  }
+
+  .mock-stat-val.red { color: var(--red); }
+  .mock-stat-val.green { color: #22C55E; }
+
+  .mock-rows { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .mock-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px; padding: 0.6rem 0.75rem;
+  }
+
+  .mock-badge {
+    font-size: 0.6rem; font-weight: 600; padding: 2px 6px;
+    border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .badge-green { background: rgba(34,197,94,0.2); color: #22C55E; }
+  .badge-yellow { background: rgba(251,191,36,0.2); color: #FBBF24; }
+  .badge-red { background: rgba(232,25,44,0.2); color: #E8192C; }
+
+  .mock-row-text {
+    font-size: 0.75rem; color: rgba(255,255,255,0.7); flex: 1;
+  }
+
+  .mock-row-name {
+    font-size: 0.65rem; color: rgba(255,255,255,0.35);
+  }
+
+  /* Floating badge */
+  .hero-badge {
+    position: absolute; bottom: -20px; left: -30px;
+    background: var(--white); border-radius: 10px;
+    padding: 0.875rem 1.25rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    display: flex; align-items: center; gap: 0.75rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .hero-badge-icon {
+    width: 36px; height: 36px; background: var(--red);
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem;
+  }
+
+  .hero-badge-text { font-size: 0.75rem; }
+  .hero-badge-text strong { display: block; font-weight: 600; }
+  .hero-badge-text span { color: var(--gray); }
+
+  /* STATS */
+  .stats {
+    padding: 4rem 3rem;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem; font-weight: 800;
+    color: var(--black); letter-spacing: -0.03em;
+  }
+
+  .stat-num span { color: var(--red); }
+
+  .stat-label {
+    font-size: 0.875rem; color: var(--gray);
+    margin-top: 0.25rem;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 6rem 3rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .section-tag::before {
+    content: ''; width: 20px; height: 2px; background: var(--red);
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800; letter-spacing: -0.03em;
+    line-height: 1.1; margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1rem; color: var(--gray);
+    max-width: 520px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: 12px; padding: 2rem;
+    border: 1.5px solid var(--border);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.1);
+    border-color: transparent;
+  }
+
+  .service-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .service-card.featured {
+    background: var(--black); color: var(--white);
+  }
+
+  .service-icon {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: var(--red); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.25rem; margin-bottom: 1.5rem;
+  }
+
+  .service-card.featured .service-icon {
+    background: rgba(232,25,44,0.3);
+  }
+
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem; line-height: 1.6;
+    color: var(--gray);
+  }
+
+  .service-card.featured p { color: rgba(255,255,255,0.6); }
+
+  .service-price {
+    margin-top: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    color: var(--black);
+  }
+
+  .service-card.featured .service-price { color: var(--white); }
+
+  .service-price span {
+    font-size: 0.8rem; font-weight: 400;
+    color: var(--gray); font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 6rem 3rem;
+    background: var(--black);
+  }
+
+  .how-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .how .section-tag { color: var(--red); }
+  .how h2 { color: var(--white); }
+  .how .section-desc { color: rgba(255,255,255,0.5); }
+
+  .steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; margin-top: 3rem;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 10%; right: 10%;
+    height: 1px; background: rgba(255,255,255,0.1);
+  }
+
+  .step { text-align: center; position: relative; }
+
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--red); color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  .step h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.875rem; color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  /* PROJECTS */
+  .projects {
+    padding: 6rem 3rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .project-card {
+    border: 0.5px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--white);
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+
+  .project-img {
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    font-size: 2.5rem;
+  }
+
+  .project-img-1 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+  .project-img-2 { background: linear-gradient(135deg, #0f2027 0%, #203a43 100%); }
+  .project-img-3 { background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 100%); }
+
+  .project-body { padding: 1.5rem; }
+
+  .project-tag {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 0.5rem;
+  }
+
+  .project-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-card p {
+    font-size: 0.875rem; color: var(--gray); line-height: 1.6;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 6rem 3rem;
+    background: var(--light);
+  }
+
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+
+  .contact h2 { margin-bottom: 1rem; }
+
+  .contact-info {
+    display: flex; flex-direction: column; gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .contact-item-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--black); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+
+  .contact-item-text { font-size: 0.9rem; }
+  .contact-item-text strong { display: block; font-weight: 600; }
+  .contact-item-text span { color: var(--gray); }
+
+  /* FORM */
+  .form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  label {
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--black); letter-spacing: 0.02em;
+  }
+
+  input, textarea, select {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px; font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem; background: var(--white);
+    color: var(--black); transition: border-color 0.2s;
+    outline: none;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--black);
+  }
+
+  textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    background: var(--black); color: var(--white);
+    padding: 0.875rem 2rem; border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    border: none; cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--red); }
+
+  .form-note {
+    font-size: 0.8rem; color: var(--gray);
+    margin-top: 0.25rem;
+  }
+
+  /* SUCCESS */
+  .form-success {
+    display: none;
+    background: #ECFDF5; border: 1px solid #6EE7B7;
+    border-radius: 8px; padding: 1rem 1.25rem;
+    font-size: 0.9rem; color: #065F46;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 0.5px solid var(--border);
+    display: flex; align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    color: var(--black); text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--red); }
+
+  footer p {
+    font-size: 0.8rem; color: var(--gray);
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .services { padding: 4rem 1.5rem; }
+    .projects { padding: 4rem 1.5rem; }
+    .how-inner { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .projects-grid { 
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      flex-direction: column !important;
+    }
+    .project-card { width: 100% !important; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .steps::before { display: none; }
+    .contact { padding: 4rem 1.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .dashboard-mock { transform: none; }
+    .hero-badge { left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Auto<span>Studio</span></a>
+  <ul>
+    <li><a href="#sluzby">Služby</a></li>
+    <li><a href="#jak-to-funguje">Jak to funguje</a></li>
+    <li><a href="#projekty">Projekty</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-tag">Automatizace pro firmy</div>
+      <h1>Konec<br>zmatku<br>v <em>zakázkách.</em></h1>
+      <p class="hero-desc">Stavíme jednoduché systémy kde šéf zadá práci jednou a všichni hned vědí co mají dělat, do kdy a jak to postupuje. Hotovo do týdne.</p>
+      <div class="hero-btns">
+        <a href="#kontakt" class="btn-primary">Chci ukázku zdarma</a>
+        <a href="#sluzby" class="btn-secondary">Naše služby</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="dashboard-mock">
+        <div class="mock-header">
+          <div class="mock-dot" style="background:#E8192C"></div>
+          <div class="mock-dot" style="background:#FBBF24"></div>
+          <div class="mock-dot" style="background:#22C55E"></div>
+          <span class="mock-title">Systém řízení zakázek</span>
+        </div>
+        <div class="mock-stats">
+          <div class="mock-stat">
+            <div class="mock-stat-label">Aktivní</div>
+            <div class="mock-stat-val">12</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">Po termínu</div>
+            <div class="mock-stat-val red">3</div>
+          </div>
+          <div class="mock-stat">
+            <div class="mock-stat-label">Splněno</div>
+            <div class="mock-stat-val green">28</div>
+          </div>
+        </div>
+        <div class="mock-rows">
+          <div class="mock-row">
+            <span class="mock-badge badge-green">Splněno</span>
+            <span class="mock-row-text">Instalace kuchyně – Novák</span>
+            <span class="mock-row-name">Jan</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-badge badge-yellow">Ke kontrole</span>
+            <span class="mock-row-text">Malování bytu – Praha</span>
+            <span class="mock-row-name">Martin</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-badge badge-red">Po termínu</span>
+            <span class="mock-row-text">Reklamace – Dvořák</span>
+            <span class="mock-row-name">Filip</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-badge badge-green">V pořádku</span>
+            <span class="mock-row-text">Servis klimatizace</span>
+            <span class="mock-row-name">Anna</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9.5L7 13.5L15 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="hero-badge-text">
+          <strong>Hotovo do 1 týdne</strong>
+          <span>Bez zbytečného čekání</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item fade-in">
+      <div class="stat-num">3<span>+</span></div>
+      <div class="stat-label">Spokojení klienti</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-num">1<span>týden</span></div>
+      <div class="stat-label">Dodání projektu</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-num">24<span>h</span></div>
+      <div class="stat-label">Odpověď do 24 hodin</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Na míru vaší firmě</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="sluzby">
+  <div class="section-tag">Naše služby</div>
+  <h2>Co pro vás<br>postavíme</h2>
+  <p class="section-desc">Každý systém je přizpůsobený přesně vaší firmě. Žádné kompromisy, žádné zbytečné funkce.</p>
+
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-icon">📋</div>
+      <h3>Systém řízení zakázek</h3>
+      <p>Šéf zadá úkol jednou – pracovníci vidí co mají dělat, do kdy a v jakém stavu to je. Přehled pro šéfa v reálném čase.</p>
+      <div class="service-price">15 000 Kč </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <div class="service-icon">📊</div>
+      <h3>Tracking klientů & příjmů</h3>
+      <p>Evidence klientů, tréninků, zakázek nebo příjmů a výdajů. Dashboard s přehledy, kalendář a formuláře – vše na jednom místě.</p>
+      <div class="service-price">8 000 Kč </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <div class="service-icon">⚙️</div>
+      <h3>Měsíční správa & úpravy</h3>
+      <p>Pravidelná údržba systému, přidávání nových funkcí, zaškolení nových zaměstnanců a technická podpora.</p>
+      <div class="service-price">Cena dohodou </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="jak-to-funguje">
+  <div class="how-inner">
+    <div class="section-tag">Proces</div>
+    <h2>Jak to funguje</h2>
+    <p class="section-desc">Od prvního kontaktu po spuštění systému za méně než týden.</p>
+
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">01</div>
+        <h3>Bezplatná ukázka</h3>
+        <p>20minutový online call kde vám ukážeme jak systém funguje a zjistíme co potřebujete.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">02</div>
+        <h3>Návrh řešení</h3>
+        <p>Do 24 hodin dostanete konkrétní nabídku přesně na míru vaší firmě.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">03</div>
+        <h3>Stavíme systém</h3>
+        <p>Systém postavíme a nastavíme přesně jak potřebujete. Hotovo do týdne.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">04</div>
+        <h3>Předání & školení</h3>
+        <p>Zaškolíme vás i váš tým. Podpora i po spuštění.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projekty">
+  <div class="section-tag">Reference</div>
+  <h2>Projekty které<br>jsme dodali</h2>
+  <p class="section-desc">Reálné systémy pro reálné firmy. Každý projekt byl hotový do týdne.</p>
+
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-img project-img-1">🧹</div>
+      <div class="project-body">
+        <div class="project-tag">Úklidová firma · Hradec Králové</div>
+        <h3>Systém řízení zakázek</h3>
+        <p>Šéfka zadává práci přes formulář, pracovníci vidí své úkoly v přehledném rozhraní. Šetří hodiny volání každý týden.</p>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-img project-img-2">🍽️</div>
+      <div class="project-body">
+        <div class="project-tag">Restaurace · Hradec Králové</div>
+        <h3>Evidence příjmů a výdajů</h3>
+        <p>Přehledná evidence financí s měsíčními a ročními přehledy. Majitel má přehled o hospodaření kdykoliv a odkudkoliv.</p>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-img project-img-3">📑</div>
+      <div class="project-body">
+        <div class="project-tag">LP-consult · Daňové poradenství</div>
+        <h3>Evidence klientů & zakázek</h3>
+        <p>Přehledná evidence klientů, zakázek a termínů. Majitelka má vše na jednom místě a šetří hodiny administrativy každý měsíc.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="contact-inner">
+    <div>
+      <div class="section-tag">Kontakt</div>
+      <h2>Pojďme si<br>promluvit</h2>
+      <p class="section-desc">Ukázka je zdarma a nezávazná. Stačí 20 minut online a společně vyřídíme vše potřebné.</p>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="contact-item-text">
+            <strong>Telefon</strong>
+            <span>+420 773 551 505</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <span>autostudio.cz@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+          <div class="contact-item-text">
+            <strong>Odpovídáme do 24 hodin</strong>
+            <span>Po–Pá, 9:00–17:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <form class="form" onsubmit="handleSubmit(event)" action="https://formspree.io/f/xaqazyow" method="POST">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jmeno">Jméno *</label>
+            <input type="text" id="jmeno" name="jmeno" placeholder="Jan Novák" required>
+          </div>
+          <div class="form-group">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="+420 123 456 789">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="vas@email.cz" required>
+        </div>
+
+        <div class="form-group">
+          <label for="firma">Název firmy</label>
+          <input type="text" id="firma" name="firma" placeholder="Vaše firma s.r.o.">
+        </div>
+
+        <div class="form-group">
+          <label for="sluzba">O jakou službu máte zájem?</label>
+          <select id="sluzba" name="sluzba">
+            <option value="">Vyberte službu</option>
+            <option>Systém řízení zakázek (15 000 Kč)</option>
+            <option>Tracking klientů & příjmů (8 000 Kč)</option>
+            <option>Automatizace na míru – domluvíme přesně podle vašich potřeb</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="zprava">Zpráva</label>
+          <textarea id="zprava" name="zprava" placeholder="Popište co potřebujete nebo na co se ptáte..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Odeslat poptávku →</button>
+        <p class="form-note">Odpovídáme do 24 hodin. Žádný spam.</p>
+
+        <div class="form-success" id="formSuccess">
+          Zpráva odeslána! Ozveme se vám do 24 hodin.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Auto<span>Studio</span></a>
+  <p>© 2026 AutoStudio. Všechna práva vyhrazena.</p>
+</footer>
+
+<script>
+// Fade in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  fetch('https://formspree.io/f/xaqazyow', {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      form.reset();
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  })
+  .catch(() => {
+    alert('Chyba při odesílání. Kontaktujte nás přímo na yevhenprodanec@gmail.com');
+  });
+}
+
+// Smooth nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
