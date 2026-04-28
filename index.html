@@ -770,7 +770,7 @@
 
   <div class="services-grid">
 
-    <div class="service-card fade-in" style="padding:0; overflow:hidden;">
+    <div class="service-card fade-in" style="padding:0; overflow:hidden; border:2px solid var(--black);">
       <div style="height:160px; background:var(--light); display:flex; align-items:center; justify-content:center; border-bottom:0.5px solid var(--border);">
         <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
           <!-- Person 1 -->
@@ -798,13 +798,14 @@
         </svg>
       </div>
       <div style="padding:2rem; display:flex; flex-direction:column; flex:1;">
+        <div style="display:inline-block; background:var(--black); color:white; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:4px; margin-bottom:0.75rem;">Zakázky</div>
         <h3 style="margin-bottom:0.75rem;">Systém řízení zakázek</h3>
         <p style="flex:1;">Šéf zadá úkol jednou – pracovníci vidí co mají dělat, do kdy a v jakém stavu to je. Přehled pro šéfa v reálném čase.</p>
         <div class="service-price" style="padding-top:1.5rem;">15 000 Kč</div>
       </div>
     </div>
 
-    <div class="service-card fade-in" style="padding:0; overflow:hidden;">
+    <div class="service-card fade-in" style="padding:0; overflow:hidden; border:2px solid var(--black);">
       <div style="height:160px; background:var(--light); display:flex; align-items:center; justify-content:center; border-bottom:0.5px solid var(--border);">
         <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
           <!-- Calendar -->
@@ -829,13 +830,14 @@
         </svg>
       </div>
       <div style="padding:2rem; display:flex; flex-direction:column; flex:1;">
+        <div style="display:inline-block; background:var(--black); color:white; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:4px; margin-bottom:0.75rem;">Evidence</div>
         <h3 style="margin-bottom:0.75rem;">Tracking klientů & příjmů</h3>
         <p style="flex:1;">Evidence klientů, zakázek a příjmů. Dashboard s přehledy a kalendář – vše přehledně na jednom místě.</p>
         <div class="service-price" style="padding-top:1.5rem;">8 000 Kč</div>
       </div>
     </div>
 
-    <div class="service-card fade-in" style="padding:0; overflow:hidden;">
+    <div class="service-card fade-in" style="padding:0; overflow:hidden; border:2px solid var(--black);">
       <div style="height:160px; background:var(--light); display:flex; align-items:center; justify-content:center; border-bottom:0.5px solid var(--border);">
         <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
           <circle cx="90" cy="60" r="35" fill="white" stroke="#E8E4DF" stroke-width="1.5"/>
@@ -848,6 +850,7 @@
         </svg>
       </div>
       <div style="padding:2rem; display:flex; flex-direction:column; flex:1;">
+        <div style="display:inline-block; background:var(--black); color:white; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:4px; margin-bottom:0.75rem;">Podpora</div>
         <h3 style="margin-bottom:0.75rem;">Měsíční správa & úpravy</h3>
         <p style="flex:1;">Pravidelná údržba systému, přidávání nových funkcí, zaškolení nových zaměstnanců a technická podpora.</p>
         <div class="service-price" style="padding-top:1.5rem;">Cena dohodou</div>
@@ -898,7 +901,7 @@
   <div class="projects-grid">
 
     <!-- Karta 1: Úklidová firma -->
-    <div class="project-card fade-in">
+    <div class="project-card fade-in" style="border:2px solid var(--black);">
       <div style="height:160px; background:var(--light); display:flex; align-items:center; justify-content:center; border-bottom:0.5px solid var(--border); overflow:hidden;">
         <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Clipboard -->
@@ -915,14 +918,14 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-tag">Úklidová firma · Hradec Králové</div>
+        <div style="display:block; background:var(--black); color:white; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:4px; margin-bottom:0.75rem;">Úklidová firma</div>
         <h3>Systém řízení zakázek</h3>
         <p>Šéfka zadává práci přes formulář, pracovníci vidí své úkoly v přehledném rozhraní. Šetří hodiny volání každý týden.</p>
       </div>
     </div>
 
     <!-- Karta 2: Restaurace -->
-    <div class="project-card fade-in">
+    <div class="project-card fade-in" style="border:2px solid var(--black);">
       <div style="height:160px; background:var(--light); display:flex; align-items:center; justify-content:center; border-bottom:0.5px solid var(--border); overflow:hidden;">
         <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Bar chart -->
@@ -932,20 +935,20 @@
           <rect x="129" y="25" width="24" height="85" rx="3" fill="#E8192C" opacity="0.5"/>
           <!-- Baseline -->
           <rect x="25" y="112" width="135" height="2" rx="1" fill="#E8E4DF"/>
-          <!-- Arrow up -->
-          <path d="M155 20l6 10h-12z" fill="#E8192C"/>
-          <rect x="158" y="28" width="3" height="20" fill="#E8192C"/>
+          <!-- Arrow up - small, beside last bar -->
+          <line x1="162" y1="55" x2="162" y2="32" stroke="#E8192C" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="157,38 162,25 167,38" fill="#E8192C"/>
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-tag">Restaurace · Hradec Králové</div>
+        <div style="display:block; background:var(--black); color:white; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:4px; margin-bottom:0.75rem;">Restaurace</div>
         <h3>Evidence příjmů a výdajů</h3>
         <p>Přehledná evidence financí s měsíčními a ročními přehledy. Majitel má přehled o hospodaření kdykoliv a odkudkoliv.</p>
       </div>
     </div>
 
     <!-- Karta 3: LP-consult -->
-    <div class="project-card fade-in">
+    <div class="project-card fade-in" style="border:2px solid var(--black);">
       <div style="height:160px; background:var(--light); display:flex; align-items:center; justify-content:center; border-bottom:0.5px solid var(--border); overflow:hidden;">
         <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Folder -->
@@ -962,7 +965,7 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-tag">LP-consult · Daňové poradenství</div>
+        <div style="display:block; background:var(--black); color:white; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; border-radius:4px; margin-bottom:0.75rem;">LP-consult</div>
         <h3>Evidence klientů & zakázek</h3>
         <p>Přehledná evidence klientů, zakázek a termínů. Majitelka má vše na jednom místě a šetří hodiny administrativy každý měsíc.</p>
       </div>
