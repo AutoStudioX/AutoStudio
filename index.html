@@ -770,7 +770,7 @@
 
   <div class="services-grid">
 
-    <div class="service-card fade-in" style="padding:0; overflow:hidden; border:2px solid var(--black);">
+    <div class="service-card fade-in" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openModal('smodal1')">
       <div style="height:180px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
         <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 80%, rgba(232,25,44,0.18) 0%, transparent 65%);"></div>
         <svg width="180" height="110" viewBox="0 0 180 110" fill="none">
@@ -803,7 +803,7 @@
       </div>
     </div>
 
-    <div class="service-card fade-in" style="padding:0; overflow:hidden; border:2px solid var(--black);">
+    <div class="service-card fade-in" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openModal('smodal2')">
       <div style="height:180px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
         <div style="position:absolute; inset:0; background:radial-gradient(circle at 20% 50%, rgba(232,25,44,0.18) 0%, transparent 65%);"></div>
         <svg width="180" height="110" viewBox="0 0 180 110" fill="none">
@@ -830,7 +830,7 @@
       </div>
     </div>
 
-    <div class="service-card fade-in" style="padding:0; overflow:hidden; border:2px solid var(--black);">
+    <div class="service-card fade-in" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openModal('smodal3')">
       <div style="height:180px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
         <div style="position:absolute; inset:0; background:radial-gradient(circle at 80% 20%, rgba(232,25,44,0.18) 0%, transparent 65%);"></div>
         <svg width="180" height="110" viewBox="0 0 180 110" fill="none">
@@ -983,6 +983,116 @@
 
   </div>
 </section>
+
+<!-- SERVICE MODALS -->
+<div id="smodal1" onclick="if(event.target===this)closeModal('smodal1')" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1.5rem;">
+  <div style="background:var(--white); border-radius:16px; max-width:560px; width:100%; overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,0.3);">
+    <div style="height:200px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative;">
+      <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 80%, rgba(232,25,44,0.2) 0%, transparent 70%);"></div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Zakázky</div>
+        <div style="font-family:'Space Grotesk'; font-size:1.5rem; font-weight:700; color:white;">Systém řízení zakázek</div>
+        <div style="font-size:1.8rem; font-weight:800; color:var(--red); margin-top:0.5rem;">15 000 Kč</div>
+      </div>
+      <button onclick="closeModal('smodal1')" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:white; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+    <div style="padding:2rem;">
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Hotovo do 1 týdne</span>
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Zaškolení zdarma</span>
+      </div>
+      <p style="color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Přehledný systém kde majitel zadá zakázku jednou a každý pracovník vidí přesně co má dělat, do kdy a v jakém stavu to je. Žádné zbytečné hovory, žádný chaos.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem;">
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Zadávání zakázek</div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Stav v reálném čase</div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Přehled pro majitele</div>
+        </div>
+      </div>
+      <a href="#kontakt" onclick="closeModal('smodal1')" style="display:block; margin-top:1.5rem; background:var(--black); color:white; text-align:center; padding:0.875rem; border-radius:6px; text-decoration:none; font-weight:500; transition:background 0.2s;" onmouseover="this.style.background='#E8192C'" onmouseout="this.style.background='#0A0A0A'">Chci tuto službu →</a>
+    </div>
+  </div>
+</div>
+
+<div id="smodal2" onclick="if(event.target===this)closeModal('smodal2')" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1.5rem;">
+  <div style="background:var(--white); border-radius:16px; max-width:560px; width:100%; overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,0.3);">
+    <div style="height:200px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative;">
+      <div style="position:absolute; inset:0; background:radial-gradient(circle at 20% 50%, rgba(232,25,44,0.2) 0%, transparent 70%);"></div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Evidence</div>
+        <div style="font-family:'Space Grotesk'; font-size:1.5rem; font-weight:700; color:white;">Tracking klientů & příjmů</div>
+        <div style="font-size:1.8rem; font-weight:800; color:var(--red); margin-top:0.5rem;">8 000 Kč</div>
+      </div>
+      <button onclick="closeModal('smodal2')" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:white; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+    <div style="padding:2rem;">
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Dashboard</span>
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Reporty</span>
+      </div>
+      <p style="color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Centrální evidence klientů, zakázek a příjmů. Majitel má vždy aktuální přehled o hospodaření, otevřených zakázkách a příchozích platbách – odkudkoliv a kdykoliv.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem;">
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Evidence klientů</div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Měsíční reporty</div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Příjmy & výdaje</div>
+        </div>
+      </div>
+      <a href="#kontakt" onclick="closeModal('smodal2')" style="display:block; margin-top:1.5rem; background:var(--black); color:white; text-align:center; padding:0.875rem; border-radius:6px; text-decoration:none; font-weight:500; transition:background 0.2s;" onmouseover="this.style.background='#E8192C'" onmouseout="this.style.background='#0A0A0A'">Chci tuto službu →</a>
+    </div>
+  </div>
+</div>
+
+<div id="smodal3" onclick="if(event.target===this)closeModal('smodal3')" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1.5rem;">
+  <div style="background:var(--white); border-radius:16px; max-width:560px; width:100%; overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,0.3);">
+    <div style="height:200px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative;">
+      <div style="position:absolute; inset:0; background:radial-gradient(circle at 80% 20%, rgba(232,25,44,0.2) 0%, transparent 70%);"></div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Podpora</div>
+        <div style="font-family:'Space Grotesk'; font-size:1.5rem; font-weight:700; color:white;">Měsíční správa & úpravy</div>
+        <div style="font-size:1.8rem; font-weight:800; color:var(--red); margin-top:0.5rem;">Cena dohodou</div>
+      </div>
+      <button onclick="closeModal('smodal3')" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:white; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+    <div style="padding:2rem;">
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Retainer</span>
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Podpora 24h</span>
+        <span style="background:var(--light); font-size:0.75rem; padding:4px 12px; border-radius:20px;">Zaškolení</span>
+      </div>
+      <p style="color:var(--gray); line-height:1.7; margin-bottom:1.5rem;">Systém se vyvíjí s vaší firmou. Pravidelná údržba, přidávání nových funkcí a zaškolení nových zaměstnanců – vše pokryto. Cenu domluvíme individuálně podle rozsahu.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem;">
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Údržba systému</div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Nové funkce</div>
+        </div>
+        <div style="background:var(--light); border-radius:8px; padding:1rem; text-align:center;">
+          <div style="font-size:1.25rem; font-weight:800;">✓</div>
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:4px;">Technická podpora</div>
+        </div>
+      </div>
+      <a href="#kontakt" onclick="closeModal('smodal3')" style="display:block; margin-top:1.5rem; background:var(--black); color:white; text-align:center; padding:0.875rem; border-radius:6px; text-decoration:none; font-weight:500; transition:background 0.2s;" onmouseover="this.style.background='#E8192C'" onmouseout="this.style.background='#0A0A0A'">Chci tuto službu →</a>
+    </div>
+  </div>
+</div>
 
 <!-- MODALS -->
 <div id="modal1" onclick="if(event.target===this)closeModal('modal1')" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1.5rem;">
@@ -1214,7 +1324,7 @@ function closeModal(id) {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') ['modal1','modal2','modal3'].forEach(closeModal);
+  if(e.key === 'Escape') ['modal1','modal2','modal3','smodal1','smodal2','smodal3'].forEach(closeModal);
 });
 
 // Smooth nav
