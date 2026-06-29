@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>AutoStudio</title>
+<title>AutoStudio – AI automatizace pro české firmy</title>
+<meta name="description" content="Stavíme jednoduché automatizační systémy pro české firmy. Řízení zakázek, evidence klientů a příjmů – hotovo do týdne. Bezplatná ukázka online.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -744,8 +745,8 @@
 <div class="stats">
   <div class="stats-inner">
     <div class="stat-item fade-in">
-      <div class="stat-num">3<span>+</span></div>
-      <div class="stat-label">Spokojení klienti</div>
+      <div class="stat-num">15<span>+</span></div>
+      <div class="stat-label">Hodin ušetřených týdně</div>
     </div>
     <div class="stat-item fade-in">
       <div class="stat-num">1<span>týd.</span></div>
@@ -773,26 +774,54 @@
     <div class="service-card fade-in" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openModal('smodal1')">
       <div style="height:180px; background:#0A0A0A; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
         <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 80%, rgba(232,25,44,0.18) 0%, transparent 65%);"></div>
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none">
-          <!-- Step 1 -->
-          <circle cx="30" cy="55" r="18" fill="rgba(232,25,44,0.15)" stroke="rgba(232,25,44,0.4)" stroke-width="1.5"/>
-          <text x="30" y="60" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-weight="700" fill="#E8192C">1</text>
-          <!-- Arrow -->
-          <path d="M50 55h18" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M64 50l6 5-6 5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Step 2 -->
-          <circle cx="90" cy="55" r="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-          <text x="90" y="60" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-weight="700" fill="rgba(255,255,255,0.5)">2</text>
-          <!-- Arrow -->
-          <path d="M110 55h18" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M124 50l6 5-6 5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Step 3 -->
-          <circle cx="150" cy="55" r="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-          <text x="150" y="60" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-weight="700" fill="rgba(255,255,255,0.5)">3</text>
-          <!-- Labels -->
-          <text x="30" y="85" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="rgba(255,255,255,0.35)">ZADÁNÍ</text>
-          <text x="90" y="85" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="rgba(255,255,255,0.35)">PŘIŘAZENÍ</text>
-          <text x="150" y="85" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="rgba(255,255,255,0.35)">SPLNĚNÍ</text>
+        <svg width="200" height="120" viewBox="0 0 200 120" fill="none">
+          <!-- Kanban columns -->
+          <!-- Col 1: Nové -->
+          <rect x="8" y="8" width="56" height="104" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <text x="36" y="22" text-anchor="middle" font-family="Space Grotesk" font-size="7" font-weight="600" fill="rgba(255,255,255,0.3)" letter-spacing="1">NOVÉ</text>
+          <!-- Cards col 1 -->
+          <rect x="14" y="28" width="44" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+          <rect x="18" y="33" width="28" height="3" rx="1.5" fill="rgba(255,255,255,0.25)"/>
+          <rect x="18" y="39" width="20" height="2.5" rx="1.25" fill="rgba(255,255,255,0.1)"/>
+          <rect x="14" y="56" width="44" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+          <rect x="18" y="61" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.25)"/>
+          <rect x="18" y="67" width="30" height="2.5" rx="1.25" fill="rgba(255,255,255,0.1)"/>
+
+          <!-- Col 2: Probíhá -->
+          <rect x="72" y="8" width="56" height="104" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <text x="100" y="22" text-anchor="middle" font-family="Space Grotesk" font-size="7" font-weight="600" fill="rgba(232,25,44,0.7)" letter-spacing="1">PROBÍHÁ</text>
+          <!-- Cards col 2 - highlighted -->
+          <rect x="78" y="28" width="44" height="22" rx="4" fill="rgba(232,25,44,0.12)" stroke="rgba(232,25,44,0.3)" stroke-width="0.5"/>
+          <rect x="82" y="33" width="30" height="3" rx="1.5" fill="rgba(232,25,44,0.6)"/>
+          <rect x="82" y="39" width="22" height="2.5" rx="1.25" fill="rgba(232,25,44,0.3)"/>
+          <!-- Progress bar -->
+          <rect x="82" y="44" width="34" height="2" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="82" y="44" width="22" height="2" rx="1" fill="#E8192C" opacity="0.7"/>
+          <rect x="78" y="56" width="44" height="22" rx="4" fill="rgba(232,25,44,0.08)" stroke="rgba(232,25,44,0.2)" stroke-width="0.5"/>
+          <rect x="82" y="61" width="24" height="3" rx="1.5" fill="rgba(232,25,44,0.5)"/>
+          <rect x="82" y="67" width="30" height="2.5" rx="1.25" fill="rgba(232,25,44,0.25)"/>
+          <rect x="82" y="72" width="34" height="2" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="82" y="72" width="10" height="2" rx="1" fill="#E8192C" opacity="0.5"/>
+          <rect x="78" y="84" width="44" height="22" rx="4" fill="rgba(232,25,44,0.08)" stroke="rgba(232,25,44,0.2)" stroke-width="0.5"/>
+          <rect x="82" y="89" width="26" height="3" rx="1.5" fill="rgba(232,25,44,0.5)"/>
+          <rect x="82" y="95" width="18" height="2.5" rx="1.25" fill="rgba(232,25,44,0.25)"/>
+
+          <!-- Col 3: Hotovo -->
+          <rect x="136" y="8" width="56" height="104" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+          <text x="164" y="22" text-anchor="middle" font-family="Space Grotesk" font-size="7" font-weight="600" fill="rgba(34,197,94,0.6)" letter-spacing="1">HOTOVO</text>
+          <!-- Cards col 3 -->
+          <rect x="142" y="28" width="44" height="22" rx="4" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.2)" stroke-width="0.5"/>
+          <rect x="146" y="33" width="26" height="3" rx="1.5" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="178" cy="42" r="5" fill="rgba(34,197,94,0.2)"/>
+          <path d="M175 42l2 2 4-4" stroke="#22C55E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="142" y="56" width="44" height="22" rx="4" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.2)" stroke-width="0.5"/>
+          <rect x="146" y="61" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="178" cy="70" r="5" fill="rgba(34,197,94,0.2)"/>
+          <path d="M175 70l2 2 4-4" stroke="#22C55E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="142" y="84" width="44" height="22" rx="4" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.2)" stroke-width="0.5"/>
+          <rect x="146" y="89" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="178" cy="98" r="5" fill="rgba(34,197,94,0.2)"/>
+          <path d="M175 98l2 2 4-4" stroke="#22C55E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div style="padding:2rem; display:flex; flex-direction:column; flex:1;">
